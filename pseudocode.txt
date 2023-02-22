@@ -1,5 +1,11 @@
 1. Prompt user for one of three choice: rock, paper, scissors.
+    a. Choice will be stored as a string in a variable.
+    b. Program must take any the input case insensitively.
 2. Program will randomly output one of three choices against our input.
+    a. Choice will be made by using the math.random function.
+    b. The choice of the three will each be assigned to one of three buckets that encompass a number range from 0-99
+    c. Depending on the random result, the random number generated will be rounded and compared to the bucket ranges.
+    d. A separate variable will be assigned depending on the value and then stored in a separate variable.
 3. Program will then check the input versus output and determine if either of us has won.
 4. A point will be added to the scoreboard and best two out of three wins.
 5. The program will tell us if we won or lost depending on our score.
