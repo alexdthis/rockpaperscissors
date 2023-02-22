@@ -1,0 +1,5 @@
+1. Prompt user for one of three choice: rock, paper, scissors.
+2. Program will randomly output one of three choices against our input.
+3. Program will then check the input versus output and determine if either of us has won.
+4. A point will be added to the scoreboard and best two out of three wins.
+5. The program will tell us if we won or lost depending on our score.
