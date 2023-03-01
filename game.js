@@ -2,37 +2,42 @@
 let roundNum = 0;
 let yourScore = 0;
 let compScore = 0;
-let playState = "y";
-let playerChoice = " ";
 let compChoice = " ";
-/*let gameOver = 0;*/
 let result = "";
-/*let roundProgresser = 0;*/
 
-/*const selectRock = document.querySelector(".rock");
+/* These variables have been made obsolete 
+let playState = "y";
+let playerChoice = " "; 
+let gameOver = 0;
+let roundProgresser = 0;
+
+const selectRock = document.querySelector(".rock");
 const selectPaper = document.querySelector(".paper");
-const selectScissors = document.querySelector(".scissors"); */
+const selectScissors = document.querySelector(".scissors"); 
+*/
+
 const output = document.querySelector(".output");
 let you = document.querySelector(".You");
 let them = document.querySelector(".Them");
-let round = document.querySelector(".Round");
+let roundScoreBoard = document.querySelector(".Match");
 
 document.querySelector(".scissors").addEventListener("click", youChoseScissors);
 document.querySelector(".paper").addEventListener("click", youChosePaper);
 document.querySelector(".rock").addEventListener("click", youChoseRock);
 
-/* Needed to test my event listeners */
+/* Needed to test my event listeners 
 
-/* function test(e){
+function test(e){
     console.log(e);
-} */
+} 
+*/
 
 /* Function has been removed beacause there is currently
     no round limit implemented, this is an artifact from
     when the game used a prompt and outputted everything
-    to the console */
+    to the console 
 
-/*        if (yourScore > compScore) {
+        if (yourScore > compScore) {
             console.log("You won with a score of " + yourScore + "-" + compScore);
         } else {
             console.log("You lost with a score of " + yourScore + "-" + compScore);
@@ -48,12 +53,17 @@ document.querySelector(".rock").addEventListener("click", youChoseRock);
 */ /*Obsolete code from when the entire game was played via
 the console and the max number of rounds was 5 */
 
-/*function outputScore(result) {
+/* This creates a DOM Exception. appendChild is not a function
+    You need to create a separate element (e.g. p, div, span) before appending
+    a child to it
+
+function outputScore(result) {
     output += "test";
     document.getElementsByClassName("output").innerHTML = "test";
     ("<p>You " + result + " this round, the score is You: " + 
     yourScore + ", Computer: " + compScore + ", it is currently round " + roundNum + "</p>");
-} */
+} 
+*/
 
 function outputScore(result) {
     let newScore = document.createElement('p');
@@ -61,7 +71,9 @@ function outputScore(result) {
             the score is You: ${yourScore}, Computer: ${compScore},
             it is currently round ${roundNum}`));
     output.appendChild(newScore);
-
+    you.textContent = yourScore;
+    them.textContent = compScore;
+    roundScoreBoard.textContent = roundNum;
 }
 
 function youChoseRock(e) {
@@ -133,7 +145,9 @@ function youChoseScissors(e) {
     }
 }
 
-/*function youFuckedUp() {
+/* Has been made obsolete now that three buttons have been added to simulate choosing
+
+function youFuckedUp() {
     let fuckedUpState = 1;
     let newPlayerChoice = " ";
     while (fuckedUpState === 1) {
@@ -156,7 +170,7 @@ function youChoseScissors(e) {
     return newPlayerChoice;
 }
 
-*/ /* Has been made obsolete now that three buttons have been added to simulate choosing */
+*/
 
 function computerChoice() {
     let randomNumber = Math.floor(Math.random() * 100);
