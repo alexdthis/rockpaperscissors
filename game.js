@@ -5,21 +5,34 @@ let compScore = 0;
 let playState = "y";
 let playerChoice = " ";
 let compChoice = " ";
-let gameOver = 0;
+/*let gameOver = 0;*/
+let result = "";
 /*let roundProgresser = 0;*/
 
-const selectRock = document.querySelector(".rock");
+/*const selectRock = document.querySelector(".rock");
 const selectPaper = document.querySelector(".paper");
-const selectScissors = document.querySelector(".scissors");
+const selectScissors = document.querySelector(".scissors"); */
 const output = document.querySelector(".output");
+let you = document.querySelector(".You");
+let them = document.querySelector(".Them");
+let round = document.querySelector(".Round");
 
-selectScissors.addEventListener('click', youChoseScissors(computerChoice()));
-selectPaper.addEventListener('click', youChosePaper(computerChoice()));
-selectRock.addEventListener('click', youChoseRock(computerChoice()));
+document.querySelector(".scissors").addEventListener("click", youChoseScissors);
+document.querySelector(".paper").addEventListener("click", youChosePaper);
+document.querySelector(".rock").addEventListener("click", youChoseRock);
 
+/* Needed to test my event listeners */
 
+/* function test(e){
+    console.log(e);
+} */
 
-        if (yourScore > compScore) {
+/* Function has been removed beacause there is currently
+    no round limit implemented, this is an artifact from
+    when the game used a prompt and outputted everything
+    to the console */
+
+/*        if (yourScore > compScore) {
             console.log("You won with a score of " + yourScore + "-" + compScore);
         } else {
             console.log("You lost with a score of " + yourScore + "-" + compScore);
@@ -32,68 +45,95 @@ selectRock.addEventListener('click', youChoseRock(computerChoice()));
             yourScore = 0;
             compScore = 0;
             roundNum = 0;
-        } 
+*/ /*Obsolete code from when the entire game was played via
+the console and the max number of rounds was 5 */
+
+/*function outputScore(result) {
+    output += "test";
+    document.getElementsByClassName("output").innerHTML = "test";
+    ("<p>You " + result + " this round, the score is You: " + 
+    yourScore + ", Computer: " + compScore + ", it is currently round " + roundNum + "</p>");
+} */
+
+function outputScore(result) {
+    let newScore = document.createElement('p');
+    newScore.appendChild(document.createTextNode(`You ${result} this round, 
+            the score is You: ${yourScore}, Computer: ${compScore},
+            it is currently round ${roundNum}`));
+    output.appendChild(newScore);
+
+}
+
+function youChoseRock(e) {
+    let opponentChoice = computerChoice();
+    switch (opponentChoice) {
+        case "scissors":
+            yourScore += 1;
+            roundNum += 1;
+            result = "won";
+            outputScore(result);
+            break;
+        case "rock":
+            roundNum += 1;
+            result = "drew";
+            outputScore(result);
+            break;
+        case "paper":
+            compScore += 1;
+            roundNum += 1;
+            outputScore(result);
+            break;
     }
 }
 
-    function youChoseRock(computerChoice) {
-        switch (computerChoice) {
-            case "scissors":
-                yourScore += 1;
-                console.log("You won round " + roundNum + ", the score is " + yourScore + "-" + compScore + "(You-Opponent)");
-                roundNum += 1;
-                break;
-            case "rock":
-                console.log("You're both drawed for round " + roundNum + ", the score is " + yourScore + "-" + compScore + "(You-Opponent)");
-                roundNum += 1;
-                break;
-            case "paper":
-                compScore += 1;
-                console.log("You lost round " + roundNum + ", the score is " + yourScore + "-" + compScore + "(You-Opponent)");
-                roundNum += 1;
-                break;
-        }
-    }
-
-function youChosePaper(computerChoice) {
-    switch (computerChoice) {
+function youChosePaper(e) {
+    let opponentChoice = computerChoice();
+    console.log(opponentChoice);
+    switch (opponentChoice) {
         case "rock":
             yourScore += 1;
-            console.log("You won round " + roundNum + ", the score is " + yourScore + "-" + compScore + "(You-Opponent)");
             roundNum += 1;
+            result = "won";
+            outputScore(result);
             break;
         case "paper":
-            console.log("You're both drawed for round " + roundNum + ", the score is " + yourScore + "-" + compScore + "(You-Opponent)");
             roundNum += 1;
+            result = "drew";
+            outputScore(result);
             break;
         case "scissors":
             compScore += 1;
-            console.log("You lost round " + roundNum + ", the score is " + yourScore + "-" + compScore + "(You-Opponent)");
             roundNum += 1;
+            result = "lost";
+            outputScore(result);
             break;
     }
 }
 
-function youChoseScissors(computerChoice) {
-    switch (computerChoice) {
+function youChoseScissors(e) {
+    let opponentChoice = computerChoice();
+    switch (opponentChoice) {
         case "paper":
             yourScore += 1;
-            console.log("You won round " + roundNum + ", the score is " + yourScore + "-" + compScore + "(You-Opponent)");
             roundNum += 1;
+            result = "won";
+            outputScore(result);
             break;
         case "scissors":
-            console.log("You're both drawed for round " + roundNum + ", the score is " + yourScore + "-" + compScore + "(You-Opponent)");
             roundNum += 1;
+            result = "drew";
+            outputScore(result);
             break;
         case "rock":
             compScore += 1;
-            console.log("You lost round " + roundNum + ", the score is " + yourScore + "-" + compScore + "(You-Opponent)");
             roundNum += 1;
+            result = "lost";
+            outputScore(result);
             break;
     }
 }
 
-function youFuckedUp() {
+/*function youFuckedUp() {
     let fuckedUpState = 1;
     let newPlayerChoice = " ";
     while (fuckedUpState === 1) {
@@ -115,6 +155,9 @@ function youFuckedUp() {
     }
     return newPlayerChoice;
 }
+
+*/ /* Has been made obsolete now that three buttons have been added to simulate choosing */
+
 function computerChoice() {
     let randomNumber = Math.floor(Math.random() * 100);
     compAnswer = computerRNG(randomNumber);
